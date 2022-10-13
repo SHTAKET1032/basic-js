@@ -10,11 +10,42 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For aabbbc should return 2a3bc
  *
  */
-function encodeLine(/* str */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function encodeLine(str) {
+
+  let arr = str.split('');
+
+  let map = arr.reduce((acc, value) => {
+    acc[value] = acc[value] ? acc[value] + 1 : 1;
+    return acc;
+  }, {});
+
+  let newVar = '';
+  for(let key in map) {
+  newVar += (map[key]+key);
+  }
+return newVar;
 }
 
 module.exports = {
   encodeLine
 };
+
+
+
+
+
+// let arr = str.split('');
+
+// let map = arr.reduce((acc, value) => {
+//   acc[value] = acc[value] ? acc[value] + 1 : 1;
+//   return acc;
+// }, {});
+
+// let newVar = '';
+// for(let key in map) {
+// newVar += (map[key]+key);
+
+// }
+// return newVar;
+
+
