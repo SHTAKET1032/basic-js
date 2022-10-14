@@ -21,10 +21,11 @@ function encodeLine(str) {
 
   let newVar = '';
   for(let key in map) {
-  newVar += (map[key]+key);
+  newVar += (key + map[key]);
   }
 return newVar;
 }
+
 
 module.exports = {
   encodeLine
@@ -32,7 +33,7 @@ module.exports = {
 
 
 
-
+// let str = 'aaaatttt';
 
 // let arr = str.split('');
 
@@ -41,11 +42,27 @@ module.exports = {
 //   return acc;
 // }, {});
 
+
 // let newVar = '';
 // for(let key in map) {
-// newVar += (map[key]+key);
-
+// newVar = (map[key]+[key]);
 // }
-// return newVar;
+
+
+// console.log(newVar);
+
+
+// let str = 'aaaatttt';
+// let arr = Object.entries([...str].reduce((acc, n) => (acc[n] = (acc[n] || 0) + 1, acc), {}));
+// let newStr = arr.join(',');
+// for(let i = 0; i<newStr.length; i++) {
+//   let newStr2 = [];
+//   if( newStr[i] !== ',') {
+//     newStr2.push(newStr[i]);
+//   }
+//   // return newStr2;
+//   console.log(newStr2);
+// }
+
 
 

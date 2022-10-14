@@ -13,19 +13,63 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class DepthCalculator {
-  calculateDepth(arr) {
-    
-    let x = 0;
-
-    for (let i = 0; i < arr.length; i++) {
-      if (Array.isArray(arr[i])) {
-        x = x+1 + this.calculateDepth(ar[i]);
-      } else x++;
+  calculateDepth (item, level = 0) {
+    if (item instanceof Array) {
+      return (level > 0 ? 1 : 0) + item.map(function(value, index) {
+        return calculateDepth(value, level + 1);
+      }).reduce((a, b) => a+b, 0);
     }
-    return x;
+    return 0;
   }
 }
 
 module.exports = {
   DepthCalculator
 };
+
+
+
+// let arr = [
+//   [1, [ 2, [ 3 ] ]],
+//   ["Rustam", 25, 3, 4],
+//   ["Ruslan", 35],
+//   ["Aleksey", 29],
+//   ["Vovan", 23]];
+
+// function calculateDepth (arr) {
+//   let x = 1;
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (Array.isArray(arr[i])) {
+//       x = 1 + calculateDepth(arr[i]);
+//     } else x += 0;
+//     i++;
+//   }
+//   return x;
+// };
+
+// console.log(calculateDepth(arr));
+
+
+// console.log(x);
+
+
+
+
+let arr = [
+  [1, [ 2, [ 3 ] ]],
+  ["Rustam", 25, 3, 4],
+  ["Ruslan", 35],
+  ["Aleksey", 29],
+  ["Vovan", 23]];
+
+function calculateDepth (item, level = 0) {
+  if (item instanceof Array) {
+    return (level > 0 ? 1 : 0) + item.map(function(value, index) {
+      return calculateDepth(value, level + 1);
+    }).reduce((a, b) => a+b, 0);
+  }
+  return 0;
+}
+
+console.log(calculateDepth(arr));
