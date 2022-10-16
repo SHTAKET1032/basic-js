@@ -21,7 +21,7 @@ function encodeLine(str) {
 
   let newVar = '';
   for(let key in map) {
-  newVar += (key + map[key]);
+  newVar += ([key]+map[key]);
   }
 return newVar;
 }
@@ -45,10 +45,8 @@ module.exports = {
 
 // let newVar = '';
 // for(let key in map) {
-// newVar = (map[key]+[key]);
+// newVar += ([key]+map[key]);
 // }
-
-
 // console.log(newVar);
 
 
@@ -60,7 +58,7 @@ module.exports = {
 //   if( newStr[i] !== ',') {
 //     newStr2.push(newStr[i]);
 //   }
-//   // return newStr2;
+//   return newStr2;
 //   console.log(newStr2);
 // }
 

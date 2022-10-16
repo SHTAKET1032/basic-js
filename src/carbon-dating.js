@@ -21,7 +21,7 @@ function dateSample(sampleActivity) {
   if (!sampleActivity || typeof sampleActivity !== 'string') {
     return false;
 }
-const timeActive = parseFloat(sampleActivity, 10); // parseFloat() принимает строку в качестве аргумента и возвращает десятичное число (число с плавающей точкой)
+const timeActive = parseFloat(sampleActivity, 10); 
 
 if (
     !timeActive ||timeActive > MODERN_ACTIVITY || timeActive <= 0
