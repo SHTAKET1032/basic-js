@@ -13,58 +13,69 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class DepthCalculator {
-  calculateDepth (item, level = 0) {
-    if (item instanceof Array) {
-      return (level > 0 ? 1 : 0) + item.map(function(value, index) {
-        return calculateDepth(value, level + 1);
-      }).reduce((a, b) => a+b, 0);
+  calculateDepth (someArr) {
+    let count = 1;
+    for (const elem of someArr) {
+      if (Array.isArray(elem)) {
+        let subDepth = this.calculateDepth(elem);
+        if (subDepth >= count) {
+          count = subDepth + 1;
+        }
+      }
     }
-    return 0;
+    return count;
   }
 }
-
 module.exports = {
   DepthCalculator
 };
 
 
 
-let arr = [[], []];
 
-function calculateDepth (arr) {
-  let x = 1;
+// let result = 1;
 
-  for (let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      x = 1 + calculateDepth(arr[i]);
-    } else x += 0;
-    i++;
-  }
-  return x;
-};
-
-console.log(calculateDepth(arr));
-
-
-// console.log(x);
-
-
-
-
-// let arr = [
-//   [1, [ 2, [ 3 ] ]],
-//   ["Rustam", 25, 3, 4],
-//   ["Ruslan", 35],
-//   ["Aleksey", 29],
-//   ["Vovan", 23]];
-
-// function calculateDepth (item, level = 0) {
-//   if (item instanceof Array) {
-//     return (level > 0 ? 1 : 0) + item.map(function(value, index) {
-//       return calculateDepth(value, level + 1);
-//     }).reduce((a, b) => a+b, 0);
-//   }
-//   return 0;
+// function calculateDepth (someArr) {
+  
+//   result = someArr.reduce(function(acc, elem) {
+//     if(Array.isArray(elem)) {
+//       acc = acc +1 + calculateDepth(elem);
+//     } else {
+//       acc = + 0;
+//     }
+//   }, 0);
+//   return result;
 // }
 
+
 // console.log(calculateDepth(arr));
+
+
+
+// let arr = [1, [8, [[]]], 2, 3, [8, []], 4, 5, ['6575', ['adas', ['dfg', [0]]]]];
+// let count = 1;
+// function calculateDepth (someArr) {
+  
+//   for (const elem of someArr) {
+//     if (Array.isArray(elem)) {
+//       count++;
+//       calculateDepth(elem);
+//     }else {
+//       count+=0;
+//     }
+//   }
+//   return count;
+// }
+// console.log(calculateDepth(arr));
+
+// let res = 1;
+
+//     for (let i = 0; i < arr.length; i++) {
+//       if (Array.isArray(arr[i])) {
+//         let subDepth = this.calculateDepth(arr[i]);
+//         if (subDepth >= res) {
+//           res = subDepth + 1;
+//         }
+//       }
+//     }
+//     return res;

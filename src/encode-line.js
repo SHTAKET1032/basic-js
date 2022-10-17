@@ -13,17 +13,22 @@ const { NotImplementedError } = require('../extensions/index.js');
 function encodeLine(str) {
 
   let arr = str.split('');
-
-  let map = arr.reduce((acc, value) => {
-    acc[value] = acc[value] ? acc[value] + 1 : 1;
-    return acc;
-  }, {});
-
   let newVar = '';
-  for(let key in map) {
-  newVar += ([key]+map[key]);
+  let repeat = 1;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == arr[i+1]) {
+      repeat++;
+    } else {
+      if (repeat == 1) {
+        newVar = newVar + arr[i];
+      } else {
+        newVar = newVar + repeat + arr[i];
+        repeat = 1;
+      }
+    }
   }
-return newVar;
+  return newVar;
 }
 
 
@@ -33,34 +38,30 @@ module.exports = {
 
 
 
-// let str = 'aaaatttt';
+// let str = 'aaaattttfd';
 
 // let arr = str.split('');
-
-// let map = arr.reduce((acc, value) => {
-//   acc[value] = acc[value] ? acc[value] + 1 : 1;
-//   return acc;
-// }, {});
-
-
 // let newVar = '';
-// for(let key in map) {
-// newVar += ([key]+map[key]);
-// }
-// console.log(newVar);
+// let repeat = 1;
 
-
-// let str = 'aaaatttt';
-// let arr = Object.entries([...str].reduce((acc, n) => (acc[n] = (acc[n] || 0) + 1, acc), {}));
-// let newStr = arr.join(',');
-// for(let i = 0; i<newStr.length; i++) {
-//   let newStr2 = [];
-//   if( newStr[i] !== ',') {
-//     newStr2.push(newStr[i]);
+// for (let i = 0; i < arr.length; i++) {
+//   if (arr[i] == arr[i+1]) {
+//     repeat++;
+//   } else {
+//     if (repeat == 1) {
+//       newVar = newVar + arr[i];
+//       repeat = 1;
+//     } else {
+//       newVar = newVar + repeat + arr[i];
+//       repeat = 1;
+//     }
 //   }
-//   return newStr2;
-//   console.log(newStr2);
+//   return newVar;
 // }
+
+
+
+
 
 
 
